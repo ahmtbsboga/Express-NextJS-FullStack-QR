@@ -23,13 +23,13 @@ const Header: FC = () => {
   return (
     <header className="relative bg-sky-100 overflow-block">
       <div
-        className="flex items-center justify-around py-10 px-12 text-white max-sm:text-black text-xl font-bold capitalize max-w-[1240px] mx-auto relative"
+        className="flex items-center justify-around py-10 px-12 max-sm:py-5 text-white max-sm:text-black text-xl font-bold capitalize max-w-[1240px] mx-auto relative"
         style={{ zIndex: 1 }}
       >
         <div>
           <img src="/logo.jpg" alt="logo" width={80} className="rounded-full" />
         </div>
-        <nav className="flex items-center gap-8 max-sm:hidden text-black">
+        <nav className="flex items-center gap-8 max-lg:hidden text-black">
           <Link href="/login">Giriş</Link>
           <Link href="/">Menüler</Link>
           <Link href="/">İçecekler</Link>

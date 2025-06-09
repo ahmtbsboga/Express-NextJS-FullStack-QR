@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { FaArrowAltCircleLeft as Left } from "react-icons/fa";
 
 interface Product {
   _id: string;
@@ -16,6 +17,7 @@ interface CardProps {
 const Card: FC<CardProps> = ({ category }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -60,24 +62,71 @@ const Card: FC<CardProps> = ({ category }) => {
   }
 
   return (
-    <ul className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-6 mt-10">
-      {products.map((product) => (
-        <li
-          key={product._id}
-          className="text-black shadow-2xl bg-gradient-to-t from-sky-300 via-gray-300 shadow-gray-400 font-bold p-5 flex flex-col items-center gap-5 rounded-bl-4xl hover:-translate-y-3 duration-700 hover:shadow-zinc-500"
+    <>
+      <ul className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-6 mt-10">
+        {products.map((product) => (
+          <li
+            key={product._id}
+            onClick={() => setSelectedProduct(product)}
+            className="cursor-pointer text-black shadow-2xl bg-gradient-to-t from-sky-300 via-gray-300 shadow-gray-400 font-bold p-5 flex flex-col items-start gap-5 rounded-bl-4xl hover:-translate-y-3 duration-700 hover:shadow-zinc-500"
+          >
+            <strong className="whitespace-nowrap border-b w-full">
+              {product.name}
+            </strong>
+            <p className="border-b w-full"> {product.price}₺ </p>
+            <img
+              src={`http://localhost:8172${product.imageUrl}`}
+              alt={product.name}
+              className="rounded-xl w-full"
+              width={100}
+              height={100}
+            />
+            <button className="shadow-2xl bg-sky-900 text-white rounded-xl py-2 px-2 w-full hover:bg-sky-600 duration-400 flex items-center justify-evenly">
+              Detay
+              <span className=" text-blue-300 hover:text-green-500 duration-400 ">
+                <Left size={20} />
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {/* Modal */}
+      {selectedProduct && (
+        <div
+          onClick={() => setSelectedProduct(null)}
+          className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-opacity-100 z-50 text-black"
         >
-          <strong className="whitespace-nowrap">{product.name}</strong>
-          <img
-            src={`http://localhost:8172${product.imageUrl}`}
-            alt={product.name}
-            className="rounded-xl"
-            width={100}
-            height={100}
-          />
-          <p> {product.price}₺ </p>
-        </li>
-      ))}
-    </ul>
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-xl p-6 max-w-md w-full shadow-lg relative"
+          >
+            <button
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-3 right-3 text-gray-700 hover:text-gray-900 font-bold text-xl"
+              aria-label="Kapat"
+            >
+              &times;
+            </button>
+            <h2 className="text-2xl font-bold mb-4">{selectedProduct.name}</h2>
+            <img
+              src={`http://localhost:8172${selectedProduct.imageUrl}`}
+              alt={selectedProduct.name}
+              className="rounded-lg mb-4 mx-auto"
+              width={200}
+              height={200}
+            />
+            <p className="mb-2">
+              <strong>Açıklama:</strong> {selectedProduct.description}
+            </p>
+            <p className="font-bold text-lg">Fiyat: {selectedProduct.price}₺</p>
+            <p className="italic text-sm mt-2">
+              Kategori: {selectedProduct.category}
+            </p>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
