@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { FC } from "react";
-import Password from "./passwordToggle";
-import FormButton from "./formButton";
+import UsernamePassword from "./passwordToggle";
 
 const Login: FC = () => {
   return (
-    <div className="mt-40 flex flex-col gap-5 items-center justify-center text-black text-5xl shadow-2xl shadow-sky-500 rounded-xl p-20">
+    <div className="mt-15 flex flex-col gap-5 items-center justify-center text-black text-5xl shadow-2xl shadow-sky-500 rounded-xl p-20">
       <div className="p-6 shadow-2xl shadow-gray-600 rounded-lg">
         <div className="flex gap-20 flex-row-reverse items-center relative">
           <h1 className="font-bold text-2xl mb-5">
@@ -20,18 +19,9 @@ const Login: FC = () => {
             className="rounded-full absolute right-[190px] bottom-0"
           />
         </div>
-
-        <form className="flex flex-col items-center gap-4">
-          <input
-            type="text"
-            className="p-2 bg-zinc-200 text-black text-lg rounded-xl outline-none"
-            placeholder="Kullanıcı adı"
-          />
-
-          <Password />
-
-          <FormButton />
-        </form>
+        <div>
+          <UsernamePassword />
+        </div>
       </div>
     </div>
   );

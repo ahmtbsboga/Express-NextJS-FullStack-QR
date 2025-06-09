@@ -15,9 +15,25 @@ app.use(
   })
 );
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 app.use(express.json());
+
+const USER = {
+  username: process.env.USER_NAME,
+  password: process.env.PASSWORD,
+};
+
+app.post("/auth/login", (req, res) => {
+  console.log("Login route çalıştı");
+
+  const { username, password } = req.body;
+  if (username === USER.username && password === USER.password) {
+    res.json({ success: true, token: process.env.JWT_SECRET });
+  } else {
+    res.status(401).json({ success: false, message: "Hatalı giriş" });
+  }
+});
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/products", require("./routes/products"));
 
