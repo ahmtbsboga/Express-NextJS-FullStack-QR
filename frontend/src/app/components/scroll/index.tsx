@@ -1,4 +1,4 @@
-"use client"; // Bu şart çünkü window kullanıyoruz
+"use client";
 
 import React, { useEffect, useState } from "react";
 

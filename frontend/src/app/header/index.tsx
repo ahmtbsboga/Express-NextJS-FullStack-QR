@@ -16,7 +16,7 @@ const WaveHeader: FC = () => {
       style={{ zIndex: 0 }}
     >
       <path
-        fill="#0EA5E9" // Dalgaların rengi, gökyüzü renginin koyusu
+        fill="#0EA5E9"
         d="M0 50 C360 150 1080 0 1440 100 L1440 150 L0 150 Z"
       />
     </svg>
@@ -33,28 +33,30 @@ const Header: FC<HeaderProps> = ({ isAdmin }) => {
         <div>
           <img src="/logo.jpg" alt="logo" width={80} className="rounded-full" />
         </div>
-        {isAdmin && (
-          <nav className="flex items-center gap-8 max-lg:hidden text-black">
+        <nav className="flex items-center gap-8 max-lg:hidden text-black">
+          {!isAdmin && (
             <Link
               href="/login"
               className="bg-black text-white p-2 hover:bg-white hover:text-black duration-400 rounded-xl"
             >
               Yönetici Giriş
             </Link>
+          )}
+          {isAdmin && (
             <Link
               href="/dashboard"
               className="bg-black text-white p-2 hover:bg-white hover:text-black duration-400 rounded-xl"
             >
               Yönetici Paneli
             </Link>
-            <Link
-              href="/"
-              className="bg-black text-white p-2 hover:bg-white hover:text-black duration-400 rounded-xl"
-            >
-              Menü
-            </Link>
-          </nav>
-        )}
+          )}
+          <Link
+            href="/"
+            className="bg-black text-white p-2 hover:bg-white hover:text-black duration-400 rounded-xl"
+          >
+            Menü
+          </Link>
+        </nav>
         <DropDown />
       </div>
       <WaveHeader />

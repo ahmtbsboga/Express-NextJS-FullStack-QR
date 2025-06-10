@@ -12,11 +12,11 @@ interface FilterProps {
   onSelect: (category: string) => void;
 }
 const categories = [
-  { key: "all", icon: <FiMenu size={30} />, label: "Tümü" }, // tüm ürünler için
+  { key: "all", icon: <FiMenu size={30} />, label: "Tümü" },
   { key: "Balık", icon: <FaFish size={30} />, label: "Balık" },
   { key: "Çorba", icon: <TbSoup size={30} />, label: "Çorba" },
   {
-    key: "Ana Yemek",
+    key: "Izgara",
     icon: <MdOutlineOutdoorGrill size={30} />,
     label: "Izgara",
   },

@@ -3,7 +3,7 @@ import Home from "./(pages)/home/page";
 
 const Page: FC = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Home />
     </div>
   );

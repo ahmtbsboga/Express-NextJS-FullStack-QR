@@ -31,10 +31,10 @@ app.post("/auth/login", (req, res) => {
     const token = jwt.sign(
       {
         username,
-        isAdmin: true, // Kullanıcıya admin rolü ekleyin
+        isAdmin: true,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "30s" }
+      { expiresIn: "1h" }
     );
 
     res.json({
@@ -57,7 +57,7 @@ app.get("/auth/verify", verifyToken, (req, res) => {
     message: "Token geçerli",
     user: {
       username: req.user.username,
-      isAdmin: req.user.isAdmin, // Token'daki admin bilgisini döndürün
+      isAdmin: req.user.isAdmin,
     },
   });
 });

@@ -2,11 +2,8 @@
 import React, { FC, useState } from "react";
 import { BiMenuAltRight } from "react-icons/bi";
 import { IoMdClose } from "react-icons/io";
-import { FaFish } from "react-icons/fa";
-import { FiMenu } from "react-icons/fi";
-import { MdOutlineOutdoorGrill } from "react-icons/md";
-import { RiDrinks2Fill } from "react-icons/ri";
-import { GiCakeSlice } from "react-icons/gi";
+import Link from "next/link";
+import { FaHome, FaInstagram } from "react-icons/fa";
 
 const DropDown: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -22,22 +19,23 @@ const DropDown: FC = () => {
       </button>
 
       {open && (
-        <div className="mt-2 rounded-md absolute top-full right-0 max-sm:right-[-120] max-sm:top-17 bg-gradient-to-b from-sky-700 via-white text-black shadow-lg  shadow-gray-400 p-12 whitespace-nowrap flex flex-col gap-5 z-50">
-          <p className="dropdown-menu ">
-            <FiMenu />
-          </p>
-          <p className="dropdown-menu ">
-            <FaFish />
-          </p>
-          <p className="dropdown-menu ">
-            <MdOutlineOutdoorGrill />
-          </p>
-          <p className="dropdown-menu ">
-            <RiDrinks2Fill />
-          </p>
-          <p className="dropdown-menu ">
-            <GiCakeSlice />
-          </p>
+        <div className="mt-2 rounded-md absolute top-full right-0 max-sm:right-[-120] max-sm:top-17 bg-gray-50 shadow-lg  shadow-gray-400 p-12 whitespace-nowrap flex flex-col gap-5 z-100">
+          <Link
+            href={"/"}
+            className="text-4xl bg-gradient-to-br from-white via-blue-500 rounded-full p-1 grid place-items-center"
+          >
+            <FaHome size={27} />
+          </Link>
+          <Link
+            href="https://www.instagram.com/kocareisetbaliksorgun/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram
+              className="text-4xl bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-600 rounded-full p-1"
+              color="white"
+            />
+          </Link>
         </div>
       )}
     </div>
