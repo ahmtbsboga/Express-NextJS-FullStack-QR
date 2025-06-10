@@ -1,32 +1,11 @@
-"use client";
-import React, { FC, useState, useEffect } from "react";
-import Card from "@/app/card";
-import Filter from "@/app/components/filter";
-import { useSearchParams, useRouter } from "next/navigation";
+import React, { FC, Suspense } from "react";
+import HomeContent from "./homecontent/homeContent";
 
 const Home: FC = () => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  const categoryFromUrl = searchParams.get("category") || "all";
-  const [selectedCategory, setSelectedCategory] =
-    useState<string>(categoryFromUrl);
-
-  useEffect(() => {
-    setSelectedCategory(categoryFromUrl);
-  }, [categoryFromUrl]);
-
-  const handleSelectCategory = (category: string) => {
-    setSelectedCategory(category);
-
-    router.replace(`?category=${encodeURIComponent(category)}`);
-  };
-
   return (
-    <div>
-      <Filter selected={selectedCategory} onSelect={handleSelectCategory} />
-      <Card category={selectedCategory} />
-    </div>
+    <Suspense fallback={<div>Yükleniyor...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 };
 

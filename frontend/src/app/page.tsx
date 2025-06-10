@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React from "react";
 import Home from "./(pages)/home/page";
 
-const Page: FC = () => {
+const Page = () => {
   return (
-    <div className="overflow-x-hidden">
+    <div>
       <Home />
     </div>
   );
