@@ -2,6 +2,10 @@ import React, { FC } from "react";
 import DropDown from "./dropdown";
 import Link from "next/link";
 
+interface HeaderProps {
+  isAdmin: boolean;
+}
+
 const WaveHeader: FC = () => {
   return (
     <svg
@@ -19,7 +23,7 @@ const WaveHeader: FC = () => {
   );
 };
 
-const Header: FC = () => {
+const Header: FC<HeaderProps> = ({ isAdmin }) => {
   return (
     <header className="relative bg-sky-100 overflow-block">
       <div
@@ -29,12 +33,28 @@ const Header: FC = () => {
         <div>
           <img src="/logo.jpg" alt="logo" width={80} className="rounded-full" />
         </div>
-        <nav className="flex items-center gap-8 max-lg:hidden text-black">
-          <Link href="/login">Giriş</Link>
-          <Link href="/">Menüler</Link>
-          <Link href="/">İçecekler</Link>
-          <Link href="/">Mezeler</Link>
-        </nav>
+        {isAdmin && (
+          <nav className="flex items-center gap-8 max-lg:hidden text-black">
+            <Link
+              href="/login"
+              className="bg-black text-white p-2 hover:bg-white hover:text-black duration-400 rounded-xl"
+            >
+              Yönetici Giriş
+            </Link>
+            <Link
+              href="/dashboard"
+              className="bg-black text-white p-2 hover:bg-white hover:text-black duration-400 rounded-xl"
+            >
+              Yönetici Paneli
+            </Link>
+            <Link
+              href="/"
+              className="bg-black text-white p-2 hover:bg-white hover:text-black duration-400 rounded-xl"
+            >
+              Menü
+            </Link>
+          </nav>
+        )}
         <DropDown />
       </div>
       <WaveHeader />
