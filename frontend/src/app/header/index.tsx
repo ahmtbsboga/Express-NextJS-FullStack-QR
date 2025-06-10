@@ -57,8 +57,12 @@ const Header: FC<HeaderProps> = ({ isAdmin }) => {
             Menü
           </Link>
         </nav>
+        <p className="text-gray-600 text-sm whitespace-nowrap max-sm:block min-sm:hidden">
+          KOCA-Reis Menü
+        </p>
         <DropDown />
       </div>
+
       <WaveHeader />
     </header>
   );
