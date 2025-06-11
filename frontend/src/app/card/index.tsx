@@ -118,7 +118,7 @@ const Card: FC<CardProps> = ({ category }) => {
       {selectedProduct && (
         <div
           onClick={() => setSelectedProduct(null)}
-          className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-opacity-100 z-50 text-black"
+          className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-opacity-100 z-50 text-black mt-[-100px]"
         >
           <div
             onClick={(e) => e.stopPropagation()}
